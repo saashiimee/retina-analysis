@@ -1,5 +1,5 @@
 {
-  "exp_name": "vessel_segmentation",
+  "dataset_name": "vessel_segmentation",
   "epochs": 20,
   "batch_size": 25,
   "patch_height": 96,

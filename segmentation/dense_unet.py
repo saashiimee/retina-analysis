@@ -1,11 +1,10 @@
 import os
 
-from tensorflow.python.keras.utils.vis_utils import plot_model
-
 from abstract_classes.model_abstract import AbstractModelNN
+from tensorflow.python.keras import backend as K
 from tensorflow.python.keras.models import Model
 from tensorflow.python.keras.layers import add, core, normalization, concatenate, Activation, Input, Conv2D, Conv2DTranspose, MaxPooling2D
-from tensorflow.python.keras import backend as K
+from tensorflow.python.keras.utils.vis_utils import plot_model
 
 
 class SegmentationModel(AbstractModelNN):

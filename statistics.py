@@ -143,8 +143,8 @@ def fileList(imgpath, filetype):
     return glob.glob(imgpath + filetype)
 
 
-def drawCurve(gtlist, problist, modelName, dataset, savepath='./'):
-    assert (len(problist) == len(modelName))
+def drawCurve(gtlist, problist, model_name, dataset, savepath='./'):
+    assert (len(problist) == len(model_name))
 
     process = CollectData()
     painter_roc = DrawCurve(savepath)
@@ -156,8 +156,8 @@ def drawCurve(gtlist, problist, modelName, dataset, savepath='./'):
     for index in range(modelNum):
         process.reload(gtlist, problist[index])
         (FPR, TPR, AUC), (Precision, Recall, MAP), IoU = process.statistics()
-        painter_roc.reload(FPR, TPR, AUC, dataset, modelName[index])
-        painter_pr.reload(Precision, Recall, MAP, dataset, modelName[index])
+        painter_roc.reload(FPR, TPR, AUC, dataset, model_name[index])
+        painter_pr.reload(Precision, Recall, MAP, dataset, model_name[index])
 
     painter_roc.roc()
     painter_pr.pr()

@@ -31,6 +31,15 @@ class DataLoader(AbstractDataLoader):
         imgs = np.empty((len(img_list), self.height, self.width, 1))
         groundtruth = np.empty((len(gt_list), self.num_seg_class, self.height, self.width))
 
+        try:
+            assert (np.max(groundtruth) == 255)
+            assert (np.min(groundtruth) == 0)
+        except ValueError:
+            print("[INFO] Dataset folder created. Please put your data into "
+                  + self.config.dataset_name
+                  + " folder to proceed.")
+            exit(0)
+
         for index in range(len(img_list)):
             input_image_path = img_list[index]
             input_image = plt.imread(input_image_path)
@@ -42,8 +51,7 @@ class DataLoader(AbstractDataLoader):
                 groundtruth[index, no_seg] = np.asarray(input_groundtruth_image)
 
         print("[INFO] Reading Data...")
-        assert (np.max(groundtruth) == 255)
-        assert (np.min(groundtruth) == 0)
+
         return imgs, groundtruth
 
     def prepare_dataset(self):

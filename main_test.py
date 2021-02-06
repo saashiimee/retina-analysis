@@ -10,9 +10,9 @@ def main_test():
     config = None
 
     try:
-        config = prepare_config('config/segmentation_config.json')
+        config = prepare_config('configuration/segmentation_config.json')
     except Exception as e:
-        print('[Exception] Config Error, %s' % e)
+        print('[Error] Config Error, %s' % e)
         exit(0)
 
     if repeat_prediction:
