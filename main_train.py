@@ -10,7 +10,7 @@ def main_train():
     config = None
 
     try:
-        config = prepare_config('configuration/segmentation_config.json')
+        config = prepare_config('configuration/segmentation_config')
     except Exception as e:
         print('[Error] Config Error, %s' % e)
         exit(0)

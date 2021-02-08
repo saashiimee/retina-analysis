@@ -39,17 +39,21 @@ def img_process(data, rl=False):
     return train_imgs
 
 
-def get_test_patches(img, config, rl=False):
+def get_test_patches(img, gt_img, config, rl=False):
     test_img = [img]
+    test_gt_img = [gt_img]
 
     test_img = np.asarray(test_img)
+    test_gt_img = np.asarray(test_gt_img)
 
     test_img_adjust = img_process(test_img, rl=rl)
+    test_gt_img_adjust = img_process(test_gt_img, rl=rl)
+
     test_imgs = paint_border(test_img_adjust, config)
 
     test_img_patch = extract_patches(test_imgs, config)
 
-    return test_img_patch, test_imgs.shape[1], test_imgs.shape[2], test_img_adjust
+    return test_img_patch, test_imgs.shape[1], test_imgs.shape[2], test_img_adjust, test_gt_img_adjust
 
 
 

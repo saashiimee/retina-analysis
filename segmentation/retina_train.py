@@ -20,7 +20,7 @@ class SegmentationTrain(AbstractTrain):
     def init_callbacks(self):
         self.callbacks.append(
             ModelCheckpoint(
-                filepath=self.config.hdf5_path + self.config.exp_name + '_best_weights.h5',
+                filepath=self.config.hdf5_path + self.config.dataset_name + '_best_weights.h5',
                 verbose=1,
                 monitor='val_loss',
                 mode='auto',
@@ -48,7 +48,7 @@ class SegmentationTrain(AbstractTrain):
                                  validation_steps=int(
                                      self.config.subsample * self.config.total_val / self.config.batch_size)
                                  )
-        self.model.save_weights(self.config.hdf5_path + self.config.exp_name + '_last_weights.h5', overwrite=True)
+        self.model.save_weights(self.config.hdf5_path + self.config.dataset_name + '_last_weights.h5', overwrite=True)
 
 
 class DataGenerator:

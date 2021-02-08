@@ -10,7 +10,7 @@ def main_test():
     config = None
 
     try:
-        config = prepare_config('configuration/segmentation_config.json')
+        config = prepare_config('configuration/segmentation_config')
     except Exception as e:
         print('[Error] Config Error, %s' % e)
         exit(0)
@@ -21,7 +21,7 @@ def main_test():
         prediction.predict()
 
     print('[INFO] Metric results...')
-    gt_list = fileList(config.test_gt_path, '*' + config.test_gt_datatype)
+    gt_list = fileList(config.test_groundtruth_path, '*' + config.test_gt_datatype)
     prob_list = fileList(config.test_result_path, '*.bmp')
     model_name = ['dense_unet']
     drawCurve(gt_list, [prob_list], model_name, 'DRIVE', config.checkpoint)
