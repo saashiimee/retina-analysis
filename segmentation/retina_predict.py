@@ -34,7 +34,7 @@ class SegmentationPredict(AbstractPredict):
             gt_img_temp = plt.imread(gt_path)
             gt_img = gt_img_temp[:, :] * 0.75 + gt_img_temp[:, :] * 0.25
             height_gt, width_gt = gt_img.shape[:2]
-            gt_img = np.reshape(gt_img, (height_gt, width_gt, 1))
+            gt_img = np.reshape(gt_img, (height_gt, width_gt, 3))
 
             patches_predict, new_height, new_width, adjust_img, adjust_gt_img = get_test_patches(org_img, gt_img, self.config)
 

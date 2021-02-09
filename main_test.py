@@ -24,7 +24,7 @@ def main_test():
     gt_list = fileList(config.test_groundtruth_path, '*' + config.test_gt_datatype)
     prob_list = fileList(config.test_result_path, '*.bmp')
     model_name = ['dense_unet']
-    drawCurve(gt_list, [prob_list], model_name, 'DRIVE', config.checkpoint)
+    drawCurve(gt_list, [prob_list], model_name, 'STARE', config.checkpoint)
 
     print('[INFO] Finished...')
 

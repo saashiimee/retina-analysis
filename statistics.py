@@ -36,9 +36,9 @@ class CollectData:
                 prob_img = (prob_img >= threshold) * 1
 
                 temp_TP = temp_TP + (np.sum(prob_img * gt_img))
-                temp_FP = temp_FP + np.sum(prob_img * ((1 - gt_img)))
-                temp_FN = temp_FN + np.sum(((1 - prob_img)) * ((gt_img)))
-                temp_TN = temp_TN + np.sum(((1 - prob_img)) * (1 - gt_img))
+                temp_FP = temp_FP + np.sum(prob_img * (1 - gt_img))
+                temp_FN = temp_FN + np.sum((1 - prob_img) * gt_img)
+                temp_TN = temp_TN + np.sum((1 - prob_img) * (1 - gt_img))
 
             self.TP.append(temp_TP)
             self.FP.append(temp_FP)
