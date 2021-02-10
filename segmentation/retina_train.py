@@ -107,13 +107,16 @@ class DataGenerator:
                     patch = train_imgs[i_center,
                             int(y_center - self.config.patch_height / 2):int(y_center + self.config.patch_height / 2),
                             int(x_center - self.config.patch_width / 2):int(x_center + self.config.patch_width / 2), :]
-                    patch_mask = train_masks[i_center, :, int(y_center - self.config.patch_height / 2):int(
-                        y_center + self.config.patch_height / 2), int(x_center - self.config.patch_width / 2):int(
-                        x_center + self.config.patch_width / 2)]
+                    patch_mask = train_masks[i_center, :,
+                                 int(y_center - self.config.patch_height / 2):int(
+                                     y_center + self.config.patch_height / 2),
+                                 int(x_center - self.config.patch_width / 2):int(
+                                     x_center + self.config.patch_width / 2)]
                     X[j, :, :, :] = patch
-                    Y[j, :, :] = generate_masks(np.reshape(patch_mask, [1, self.config.seg_num, self.config.patch_height,
-                                                                   self.config.patch_width]), self.config.seg_num)
-                yield (X, Y)
+                    Y[j, :, :] = generate_masks(np.reshape(patch_mask, [1, self.config.seg_num,
+                                                                        self.config.patch_height,
+                                                                        self.config.patch_width]), self.config.seg_num)
+                yield X, Y
 
     def train_gen(self):
         class_weight = [1.0, 0.0]
