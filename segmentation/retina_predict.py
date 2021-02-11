@@ -29,11 +29,17 @@ class SegmentationPredict(AbstractPredict):
         predict_list = glob.glob(self.config.test_img_path + "*." + self.config.test_datatype)
         for (path, gt_path) in zip(predict_list, groundtruth_list):
             org_img_temp = plt.imread(path)
+            plt.imshow(org_img_temp)
+            plt.show()
             if org_img_temp.shape[0] > 1000 or org_img_temp.shape[1] > 1000:
                 org_img_temp = img_resize(org_img_temp, 0.5)
             org_img = org_img_temp[:, :, 1] * 0.75 + org_img_temp[:, :, 0] * 0.25
+            plt.imshow(org_img)
+            plt.show()
             height, width = org_img.shape[:2]
             org_img = np.reshape(org_img, (height, width, 1))
+            plt.imshow(org_img)
+            plt.show()
 
             gt_img_temp = plt.imread(gt_path)
             if gt_img_temp.shape[0] > 1000 or gt_img_temp.shape[1] > 1000:
@@ -58,7 +64,7 @@ class SegmentationPredict(AbstractPredict):
             contours, _ = cv2.findContours(binary_result, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             adjust_img = cv2.drawContours(org_img_temp, contours, -1, (0, 255, 0), 2)
 
-            result_merge = visualize([adjust_img / 255., binary_result, adjust_gt_img], [1, 3])
+            result_merge = visualize([adjust_img / 255., adjust_gt_img, binary_result, prob_result], [1, 4])
             result_merge = cv2.cvtColor(result_merge, cv2.COLOR_RGB2BGR)
 
             cv2.imwrite(self.config.test_result_path + self.analyze_name(path) + "_merge.jpg", result_merge)
