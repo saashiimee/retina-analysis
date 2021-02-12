@@ -11,7 +11,7 @@ def main_train(model_name):
     config = None
 
     try:
-        config = prepare_config('configuration/segmentation_config.json')
+        config = prepare_config('configuration/segmentation_config')
     except Exception as e:
         print('[Error] Config Error, %s' % e)
         exit(0)
@@ -39,5 +39,5 @@ def main_train(model_name):
 
 
 if __name__ == '__main__':
-    # main_train("ModelDenseUNet")
-    main_train("ModelAttentionBasedUNet")
+    main_train("ModelDenseUNet")
+    # main_train("ModelAttentionBasedUNet")
